@@ -11,11 +11,13 @@ const fetchProduct = require('./routes/fetchProduct');
 require('dotenv').config();
 const { cronJob } = require('./utilities/utilities');
 // const { productModel } = require('./schema/schema');
+const contactQuery = require('./routes/contactQuery');
 
 
 app.use('/request-assets-download', requestAssetsDownload);
 app.use('/request-assets-post', requestAssetsPost);
 app.use('/fetch-products', fetchProduct);
+app.use('/contact-query', contactQuery);
 
 // app.post('/upload', async (req, res) => {
 //     const data = req.body;

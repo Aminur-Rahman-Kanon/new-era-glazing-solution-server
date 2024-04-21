@@ -1,4 +1,5 @@
 const https = require('https');
+const path = require('path');
 
 function cronJob (){
     setInterval(() => {
@@ -8,6 +9,70 @@ function cronJob (){
     }, 840000);
 }
 
+
+async function sendMail(transporter, data) {
+    if (!transporter) return { status: 'failed', msg: 'no transporter found' };
+
+    try {
+        const info = await transporter.sendMail({
+            from: '"New Age Service 👻" <acharjeesupan@gmail.com>', // sender address
+            to: "kanon754@gmail.com", // list of receivers
+            subject: "New Customer Query Received", // Subject line
+            text: "A new customer query just received. Please respond asap", // plain text body
+            html: `<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Your Awesome Email</title>
+            </head>
+            <body>
+                <div style="width: 100%;">
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Full name</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.name}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Phone number</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.number}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Email address</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.email}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Project address</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.address}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Product name</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.product}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Product color</span>
+                        <span style="padding: 5px; box-sizing: border-box;">${data.color}</span>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                        <span style="padding: 5px; box-sizing: border-box;">Attchment</span>
+                    </div>
+                </div>
+            </body>
+            </html>`,
+            attachments: [
+                {
+                    filename: data.attachment.originalname,
+                    content: data.attachment.buffer
+                }
+            ]
+        });
+
+        return { status: 'success', msg: `Message sent to ${info.messageId}` };
+    } catch (error) {
+        return { status: 'failed', msg: 'failed to send mail' }
+    }
+}
+
 module.exports = {
-    cronJob
+    cronJob, sendMail
 }
