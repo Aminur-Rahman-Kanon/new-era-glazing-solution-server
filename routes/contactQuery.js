@@ -3,15 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const upload = multer({ storage: multer.memoryStorage() });
-const { sendMail } = require('../utilities/utilities');
-
-const smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "acharjeesupan@gmail.com",
-        pass: "ucmrhehbrmysvxby"
-    }
-});
+const { sendContactQuery } = require('../utilities/utilities');
 
 router.post('/', upload.single('attachment'), async (req, res) => {
     let data;
@@ -32,7 +24,7 @@ router.post('/', upload.single('attachment'), async (req, res) => {
 
     const dataToSend = { ...data, attachment }
     
-    const sendStatus = await sendMail(smtpTransport, dataToSend);
+    const sendStatus = await sendContactQuery(dataToSend);
     if (sendStatus.status === 'success'){
         return res.status(200).json({ status: 'success' })
     }
