@@ -5,7 +5,7 @@ const { sendBrochureQuery } = require('../utilities/utilities');
 router.post('/', async (req, res) => {
     const body = req.body;
     const request = body.requestType;
-    if (request === 'by post'){
+    if (request === 'by post' || request === 'by email'){
         const sendingStatus = await sendBrochureQuery(body);
         console.log(sendingStatus);
         if (sendingStatus.status === 'success'){

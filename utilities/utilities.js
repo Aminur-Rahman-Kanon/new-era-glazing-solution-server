@@ -24,7 +24,7 @@ async function sendBrochureQuery(data) {
     try {
         const info = await transporter.sendMail({
             from: '"New Age Service 👻" <acharjeesupan@gmail.com>', // sender address
-            to: "kanon754@gmail.com", // list of receivers
+            to: "info@neweraglazingsolutions.co.uk", // list of receivers
             subject: "New Brochure Request Received", // Subject line
             text: "A new Brochure request just received. Please respond asap", // plain text body
             html: `<!DOCTYPE html>
@@ -53,10 +53,6 @@ async function sendBrochureQuery(data) {
                     <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
                         <span style="padding: 5px; box-sizing: border-box;">Project address</span>
                         <span style="padding: 5px; box-sizing: border-box;">${data.address}</span>
-                    </div>
-                    <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
-                        <span style="padding: 5px; box-sizing: border-box;">Town</span>
-                        <span style="padding: 5px; box-sizing: border-box;">${data.town}</span>
                     </div>
                     <div style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
                         <span style="padding: 5px; box-sizing: border-box;">Product name</span>
