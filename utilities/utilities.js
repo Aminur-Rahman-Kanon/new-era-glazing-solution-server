@@ -139,7 +139,7 @@ async function sendQuery(data) {
     try {
         const info = await transporter.sendMail({
             from: '"New Age Service 👻" <acharjeesupan@gmail.com>', // sender address
-            to: "kanon754@gmail.com", // list of receivers
+            to: "info@neweraglazingsolutions.co.uk", // list of receivers
             subject: "New Contact Query Received", // Subject line
             text: "A customer wants to contact. Please respond asap", // plain text body
             html: `<!DOCTYPE html>
