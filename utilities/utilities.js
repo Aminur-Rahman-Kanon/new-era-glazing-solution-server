@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 
 function cronJob (){
     setInterval(() => {
-        https.get('https://new-era-glazing-solution-server.onrender.com', (res) => {
+        https.get('https://new-era-glazing-solution-server-f28f.onrender.com', (res) => {
             console.log('pinging...');
         })
     }, 840000);
