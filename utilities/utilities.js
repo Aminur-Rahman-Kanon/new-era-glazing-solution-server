@@ -24,7 +24,7 @@ async function sendBrochureQuery(data) {
     try {
         const info = await transporter.sendMail({
             from: '"New Age Service 👻" <acharjeesupan@gmail.com>', // sender address
-            to: "newera.gsltd@gmail.com", // list of receivers
+            to: ["newera.gsltd@gmail.com", "info@neweraglazingsolutionsltd.co.uk"], // list of receivers
             subject: "New Brochure Request Received", // Subject line
             text: "A new Brochure request just received. Please respond asap", // plain text body
             html: `<!DOCTYPE html>
@@ -75,7 +75,7 @@ async function sendContactQuery(data) {
     try {
         const info = await transporter.sendMail({
             from: '"New Age Service 👻" <acharjeesupan@gmail.com>', // sender address
-            to: "newera.gsltd@gmail.com", // list of receivers
+            to: ["newera.gsltd@gmail.com", "info@neweraglazingsolutionsltd.co.uk"], // list of receivers
             subject: "New Customer Query Received", // Subject line
             text: "A new customer query just received. Please respond asap", // plain text body
             html: `<!DOCTYPE html>
